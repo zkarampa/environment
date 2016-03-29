@@ -12,12 +12,18 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
+# Not everything deserves to be written in history
+export HISTIGNORE="exit:ls:ll:fg:history:cl:clear"
+
+# Store time in format: YYYY-MM-DD HH:MM:SS
+HISTTIMEFORMAT="%F %T "
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -55,7 +61,6 @@ if [ -n "$force_color_prompt" ]; then
 	color_prompt=
     fi
 fi
-
 
 parse_git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
@@ -118,11 +123,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
 alias psg='ps aux | grep'
 alias gg='git status'
-
-export HISTTIMEFORMAT="%d/%m/%y %T "
 
 landscape-sysinfo | cowsay -n
 
