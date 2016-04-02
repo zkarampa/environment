@@ -13,7 +13,7 @@ esac
 HISTCONTROL=ignoreboth
 
 # Not everything deserves to be written in history
-export HISTIGNORE="exit:ls:ll:fg:history:cl:clear"
+HISTIGNORE="exit:ls:ll:fg:history:clear"
 
 # Store time in format: YYYY-MM-DD HH:MM:SS
 HISTTIMEFORMAT="%F %T "
@@ -69,7 +69,7 @@ parse_git_branch() {
 if [ "$color_prompt" = yes ]; then
     PS1="${debian_chroot:+($debian_chroot)}\[\e[33m\]\h \[\e[32m\]\W\[\e[31m\]\$(parse_git_branch)\n\[\e[0m\]$ "
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -126,5 +126,5 @@ fi
 alias psg='ps aux | grep'
 alias gg='git status'
 
-landscape-sysinfo | cowsay -n
+landscape-sysinfo | head -n -2 | cowsay -n
 
