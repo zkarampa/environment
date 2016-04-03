@@ -126,5 +126,5 @@ fi
 alias psg='ps aux | grep'
 alias gg='git status'
 
-landscape-sysinfo | head -n -2 | cowsay -n
+#landscape-sysinfo | head -n -2 | cowsay -n
 
