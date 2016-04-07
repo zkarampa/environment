@@ -46,6 +46,45 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
+#
+# Color prompt stuff
+#
+
+#------------------------------------------////
+# tput colors:
+#------------------------------------------////
+
+# Action                    Parameters
+# Set background color      tput setab [color]
+# Set foreground color      tput setaf [color]
+# Set bold mode             tput bold
+# Set half-bright mode      tput dim
+# Set underline mode        tput smul
+# Exit underline mode       tput rmul
+# Reverse mode              tput rev
+# Set standout mode         tput smso
+# Exit standout mode        tput rmso
+# Reset all attributes      tput sgr0
+
+# Color    Code
+# Black     0
+# Red       1
+# Green     2
+# Yellow    3
+# Blue      4
+# Magenta   5
+# Cyan      6
+# White     7
+
+# Black 0;30
+# Blue 0;34
+# Green 0;32
+# Cyan 0;36
+# Red 0;31
+# Purple 0;35
+# Brown 0;33
+
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -63,11 +102,17 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 parse_git_branch() {
-        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\[\e[33m\]\h \[\e[32m\]\W\[\e[31m\]\$(parse_git_branch)\n\[\e[0m\]$ "
+   prompt="${debian_chroot:+($debian_chroot)}"
+#   prompt+="\[\e[30m\][\t] "                 # [HH:MM:SS]
+   prompt+="\[\e[33m\]\h "                   # Host
+   prompt+="\[\e[32m\]\W "                   # Working dir
+   prompt+="\[\e[31m\]\$(parse_git_branch)"  # Working branch
+   prompt+="\n\[\e[0m\]$ "
+   export PS1=$prompt
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
