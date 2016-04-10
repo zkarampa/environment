@@ -50,39 +50,13 @@ esac
 # Color prompt stuff
 #
 
-#------------------------------------------////
-# tput colors:
-#------------------------------------------////
-
-# Action                    Parameters
-# Set background color      tput setab [color]
-# Set foreground color      tput setaf [color]
-# Set bold mode             tput bold
-# Set half-bright mode      tput dim
-# Set underline mode        tput smul
-# Exit underline mode       tput rmul
-# Reverse mode              tput rev
-# Set standout mode         tput smso
-# Exit standout mode        tput rmso
-# Reset all attributes      tput sgr0
-
-# Color    Code
-# Black     0
-# Red       1
-# Green     2
-# Yellow    3
-# Blue      4
-# Magenta   5
-# Cyan      6
-# White     7
-
 # Black 0;30
-# Blue 0;34
-# Green 0;32
-# Cyan 0;36
 # Red 0;31
-# Purple 0;35
+# Green 0;32
 # Brown 0;33
+# Blue 0;34
+# Purple 0;35
+# Cyan 0;36
 
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -107,11 +81,11 @@ parse_git_branch() {
 
 if [ "$color_prompt" = yes ]; then
    prompt="${debian_chroot:+($debian_chroot)}"
-#   prompt+="\[\e[30m\][\t] "                 # [HH:MM:SS]
+#   prompt+="\[\e[36m\][\t] "                 # [HH:MM:SS]
    prompt+="\[\e[33m\]\h "                   # Host
    prompt+="\[\e[32m\]\W "                   # Working dir
-   prompt+="\[\e[31m\]\$(parse_git_branch)"  # Working branch
-   prompt+="\n\[\e[0m\]$ "
+   prompt+="\[\e[31m\]\$(parse_git_branch) " # Working branch
+   prompt+="\[\e[0m\]\n$ "
    export PS1=$prompt
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
