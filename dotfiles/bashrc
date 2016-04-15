@@ -50,14 +50,28 @@ esac
 # Color prompt stuff
 #
 
-#0;30m   Black
-#0;31m   Red
-#0;32m   Green
-#0;33m   Yellow/Brown
-#0;34m   Blue
-#0;35m   Purple
-#0;36m   Cyan
-#0;37m   White
+# ANSI color codes
+RS="\[\033[0m\]"    # reset
+HC="\[\033[1m\]"    # hicolor
+UL="\[\033[4m\]"    # underline
+INV="\[\033[7m\]"   # inverse background and foreground
+FBLK="\[\033[30m\]" # foreground black
+FRED="\[\033[31m\]" # foreground red
+FGRN="\[\033[32m\]" # foreground green
+FYEL="\[\033[33m\]" # foreground yellow
+FBLE="\[\033[34m\]" # foreground blue
+FMAG="\[\033[35m\]" # foreground magenta
+FCYN="\[\033[36m\]" # foreground cyan
+FWHT="\[\033[37m\]" # foreground white
+BBLK="\[\033[40m\]" # background black
+BRED="\[\033[41m\]" # background red
+BGRN="\[\033[42m\]" # background green
+BYEL="\[\033[43m\]" # background yellow
+BBLE="\[\033[44m\]" # background blue
+BMAG="\[\033[45m\]" # background magenta
+BCYN="\[\033[46m\]" # background cyan
+BWHT="\[\033[47m\]" # background white
+
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -81,14 +95,15 @@ parse_git_branch() {
 
 if [ "$color_prompt" = yes ]; then
    prompt="${debian_chroot:+($debian_chroot)}"
-   prompt+="\[\e[0;33m\]\h "                   # Host
-   prompt+="\[\e[0;32m\]\W "                   # Working dir
-   prompt+="\[\e[0;31m\]\$(parse_git_branch) " # Working branch
-
+#   prompt+="$FMAG\u"                    # User
+#   prompt+="$RS@"                        # @
+   prompt+="$FYEL\h "                   # Host
+#   prompt+="$RS:"                        # :
+   prompt+="$FGRN\W "                   # Working dir
+   prompt+="$FRED\$(parse_git_branch) " # Working branch
    prompt+="\n"
-   prompt+="\[\e[0;36m\][\t] "                 # [HH:MM:SS]
-#   prompt+="\[\e[0m\]\n$ "
-   prompt+="\[\e[0m\]$ "
+   prompt+="$FCYN[\t] "                 # [HH:MM:SS]
+   prompt+="$RS\$ "
    export PS1=$prompt
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
