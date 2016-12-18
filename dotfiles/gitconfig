@@ -1,0 +1,27 @@
+[user]
+	email =
+	name = Zisis Karampaglis
+
+[merge]
+	tool = meld
+
+[diff]
+	tool = meld
+
+[push]
+  	default = current
+
+[pull]
+  	default = current
+
+[core]
+  	editor = vim
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+
+[alias]
+  	lg = log --graph --decorate
+
+[color]
+	ui = true
+

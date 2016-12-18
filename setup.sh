@@ -6,18 +6,23 @@ dotfiles_dir="${path}/dotfiles"
 
 echo "${prefix} Removing old stuff..."
 
-file="bashrc"
+declare -a files=("bashrc" "gitconfig" "gitignore_global")
 
-if [[ -L ~/.${file} ]]; then
-    rm ~/.${file}
-elif [[ -f ~/.${file} ]]; then
-    mv ~/.${file} ~/.${file}.bak
-fi
+for file in ${files[@]}; do
+    if [[ -L ~/.${file} ]]; then
+        rm ~/.${file}
+    elif [[ -f ~/.${file} ]]; then
+        mv ~/.${file} ~/.${file}.bak
+    fi
+done
 
 echo "${prefix} Creating symlinks..."
-if [[ ! -f ~/.${file} ]]; then
-    ln -s ${dotfiles_dir}/${file} ~/.${file} > /dev/null
-fi
+for file in ${files[@]}; do
+    if [[ ! -f ~/.${file} ]]; then
+        ln -s ${dotfiles_dir}/${file} ~/.${file} > /dev/null
+    fi
+done
+
 
 echo "${prefix} Reload your shell for changes to take place..."
 
