@@ -43,7 +43,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 #
@@ -131,6 +131,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -160,7 +163,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias psg='ps aux | grep'
 alias gg='git status'
 
 #landscape-sysinfo | head -n -2 | cowsay -n
