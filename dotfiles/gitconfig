@@ -9,19 +9,18 @@
 	tool = meld
 
 [push]
-  	default = current
+	default = current
 
 [pull]
-  	default = current
+	default = current
 
 [core]
-  	editor = vim
+	editor = vim
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
 
 [alias]
-  	lg = log --graph --decorate
+	lg = log --graph --decorate --stat
 
 [color]
 	ui = true
-
