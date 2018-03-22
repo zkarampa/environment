@@ -20,7 +20,8 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
-	lg = log --graph --decorate --stat
+	lgs = log --graph --decorate --stat
+	lg = log --graph --decorate
 
 [color]
 	ui = true
